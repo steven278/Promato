@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
+
     Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(MainActivity.this, NextActivity.class);
+                Intent i = new Intent(MainActivity.this, Pomodoro.class);
                 startActivity(i);
                 finish();
             }

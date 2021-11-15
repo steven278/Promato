@@ -3,12 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Kuliah/S5/Mobile Programming App/Promato/Promato/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Kuliah/S5/Mobile Programming App/Promato/Promato/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Kuliah/S5/Mobile Programming App/Promato/Promato/app/src/main/res/drawable/ic_tampilanawal.xml" value="0.1" />
         <entry key="..\:/Kuliah/S5/Mobile Programming App/Promato/Promato/app/src/main/res/drawable/ic_tampilanawal__2_.xml" value="0.1" />
         <entry key="..\:/Kuliah/S5/Mobile Programming App/Promato/Promato/app/src/main/res/drawable/ic_tampilanawals.xml" value="0.1" />
         <entry key="..\:/Kuliah/S5/Mobile Programming App/Promato/Promato/app/src/main/res/layout/activity_home.xml" value="0.1793478260869565" />
         <entry key="..\:/Kuliah/S5/Mobile Programming App/Promato/Promato/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/Kuliah/S5/Mobile Programming App/Promato/Promato/app/src/main/res/layout/activity_next.xml" value="0.1793478260869565" />
+        <entry key="..\:/Kuliah/S5/Mobile Programming App/Promato/Promato/app/src/main/res/layout/activity_splash.xml" value="0.2644927536231884" />
       </map>
     </option>
   </component>
