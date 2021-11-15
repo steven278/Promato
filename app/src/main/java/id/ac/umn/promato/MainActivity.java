@@ -3,7 +3,6 @@ package id.ac.umn.promato;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Chronometer podomoroTime;
+    private Chronometer pomodoroTime;
     private Button startPause;
 
     private boolean isRunning, paused=true;
@@ -20,25 +19,58 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView status;
 
+    private boolean work = true, longRest = false;
+    private int restCount = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        podomoroTime = findViewById(R.id.podTime);
+        pomodoroTime = findViewById(R.id.podTime);
         startPause = findViewById(R.id.startPause);
 
-        podomoroTime.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+        pomodoroTime.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
 
-                if((SystemClock.elapsedRealtime() - podomoroTime.getBase()) > 1500000)
+                if(work && (SystemClock.elapsedRealtime() - pomodoroTime.getBase()) > 1500000)
                 {
-                    status.setText("Rest");
+                    work = false;
+
+                    ResetStart();
+
+                    restCount++;
+                    if(restCount %4 == 0)
+                    {
+                        longRest = true;
+                        status.setText("Long Rest");
+
+                    }else status.setText("Rest");
+                }else if (!work && !longRest && (SystemClock.elapsedRealtime() - pomodoroTime.getBase()) > 300000)
+                {
+                    work = true;
+                    status.setText("Working");
+
+                    ResetStart();
+                }else if(!work && longRest && (SystemClock.elapsedRealtime() - pomodoroTime.getBase()) > 900000)
+                {
+                    work = true;
+                    status.setText("Working");
+
+                    ResetStart();
+
+                    longRest = false;
                 }
             }
         });
         status = findViewById(R.id.status);
+    }
+
+    private void ResetStart()
+    {
+        pomodoroTime.setBase(SystemClock.elapsedRealtime());
+        currentTVal = 0;
     }
 
     public void StartPodomoro(View v)
@@ -46,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
         if(!isRunning && paused)
         {
             status.setText("Working");
-            podomoroTime.setBase(SystemClock.elapsedRealtime() - currentTVal);
-            podomoroTime.start();
+            pomodoroTime.setBase(SystemClock.elapsedRealtime() - currentTVal);
+            pomodoroTime.start();
             isRunning = true;
             startPause.setText("Pause");
             paused = false;
@@ -61,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
     private void PausePodomoro()
     {
         if(!isRunning) return;
-        podomoroTime.stop();
-        currentTVal = SystemClock.elapsedRealtime() - podomoroTime.getBase();
+        pomodoroTime.stop();
+        currentTVal = SystemClock.elapsedRealtime() - pomodoroTime.getBase();
         isRunning = false;
         startPause.setText("Start");
         paused = true;
@@ -71,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     public void StopPodomoro(View v)
     {
         status.setText("Status");
-        podomoroTime.setBase(SystemClock.elapsedRealtime());
+        pomodoroTime.setBase(SystemClock.elapsedRealtime());
         currentTVal = 0;
         PausePodomoro();
     }
