@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "114566570168",
+    "project_id": "promato-87428",
+    "storage_bucket": "promato-87428.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:114566570168:android:679efd83f00a6a927fd44d",
+        "android_client_info": {
+          "package_name": "id.ac.umn.promato"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "114566570168-8nrknd6dej1q76dodkjptcrka4sdhs98.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4ksR92RYncs9KAiIYXQxIfcAqV3kPxME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "114566570168-8nrknd6dej1q76dodkjptcrka4sdhs98.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
