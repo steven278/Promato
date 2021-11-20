@@ -10,11 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Promato">
         <activity
-            android:name=".Pomodoro"
+            android:name=".LandingPageActivity"
             android:exported="true" />
-<!--        <activity-->
-<!--            android:name=".NextActivity"-->
-<!--            android:exported="true" />-->
+        <activity
+            android:name=".Pomodoro"
+            android:exported="true" /> <!-- <activity -->
+        <!-- android:name=".NextActivity" -->
+        <!-- android:exported="true" /> -->
         <activity
             android:name=".MainActivity"
             android:exported="true">

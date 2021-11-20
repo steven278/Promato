@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(MainActivity.this, Pomodoro.class);
+                Intent i = new Intent(MainActivity.this, LandingPageActivity.class);
                 startActivity(i);
                 finish();
             }
