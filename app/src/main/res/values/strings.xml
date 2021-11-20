@@ -2,4 +2,6 @@
     <string name="app_name">Promato</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="todolist">To-do List</string>
+    <string name="you_can_do_it">You can do it</string>
 </resources>

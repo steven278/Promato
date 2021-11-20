@@ -1,5 +1,6 @@
 package id.ac.umn.promato;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,7 @@ public class TodolistFragment extends Fragment {
 
     public TodolistFragment() {
         // Required empty public constructor
+
     }
 
     /**
@@ -43,6 +45,7 @@ public class TodolistFragment extends Fragment {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -59,6 +62,8 @@ public class TodolistFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_todolist, container, false);
+
     }
 }
