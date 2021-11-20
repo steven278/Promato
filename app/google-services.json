@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "114566570168-isbn03eqcf8h8uj8kou52bpfn05pt4mr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ac.umn.promato",
+            "certificate_hash": "01d7a34ed21ae936bfc68c8af9dec50e359979b7"
+          }
+        },
+        {
           "client_id": "114566570168-8nrknd6dej1q76dodkjptcrka4sdhs98.apps.googleusercontent.com",
           "client_type": 3
         }

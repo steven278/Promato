@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Promato">
         <activity
+            android:name=".UserProfileActivity"
+            android:exported="true" />
+        <activity
             android:name=".LandingPageActivity"
             android:exported="true" />
         <activity
