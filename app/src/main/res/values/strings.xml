@@ -5,4 +5,6 @@
     <string name="todolist">To-do List</string>
     <string name="calendar">Calendar</string>
     <string name="you_can_do_it">You can do it</string>
+    <string name="todo">todo_item</string>
+    <string name="date">date</string>
 </resources>

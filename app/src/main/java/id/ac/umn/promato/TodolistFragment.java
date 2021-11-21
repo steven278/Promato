@@ -4,10 +4,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,14 +60,26 @@ public class TodolistFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
 
+    }
+    private RecyclerView rvTodo;
+    private ArrayList<Todo> list = new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_todolist, container, false);
-
+        View v = inflater.inflate(R.layout.fragment_todolist, container, false);
+        rvTodo = v.findViewById(R.id.rv_todo);
+        rvTodo.setHasFixedSize(true);
+        list.addAll(TodoListData.getListData());
+        showRecyclerList();
+        return v;
+//        return inflater.inflate(R.layout.fragment_todolist, container, false);
     }
+    private void showRecyclerList(){
+        rvTodo.setLayoutManager(new LinearLayoutManager(getActivity()));
+        ListTodoAdapter listtodoadapter = new ListTodoAdapter(list);
+        rvTodo.setAdapter(listtodoadapter);
+    }
+
 }

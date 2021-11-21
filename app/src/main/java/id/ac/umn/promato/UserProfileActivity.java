@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
     TextView tvUserName;
     TextView tvUserEmail;
     ImageView userImageView;
-    Button btnSignOut;
+    Button btnSignOut,btnMainMenu;
     FirebaseAuth mAuth;
 
     @Override
@@ -29,6 +30,7 @@ import com.google.firebase.auth.FirebaseAuth;
         tvUserEmail = findViewById(R.id.userEmail);
         userImageView = findViewById(R.id.userImageView);
         btnSignOut = findViewById(R.id.btnLogout);
+        btnMainMenu = findViewById(R.id.gotoMainMenu);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -44,5 +46,16 @@ import com.google.firebase.auth.FirebaseAuth;
             mAuth.signOut();
             startActivity(new Intent(UserProfileActivity.this, LandingPageActivity.class));
         });
+
+        btnMainMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoMainMenu();
+            }
+        });
+    }
+    public void gotoMainMenu(){
+        Intent intent = new Intent(this, Pomodoro.class);
+        startActivity(intent);
     }
 }
