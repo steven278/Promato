@@ -5,16 +5,16 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:weightSum="2"
-    android:padding="16dp">
+    android:padding="4dp">
     <TextView
         android:id="@+id/tv_todo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="2dp"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:layout_weight="0.9"
-        android:paddingRight="10dp"
+        android:layout_weight="0.7"
+        android:layout_marginRight="12dp"
         tools:text="@string/todo" />
     <TextView
         android:id="@+id/tv_date"
