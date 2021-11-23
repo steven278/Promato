@@ -20,14 +20,14 @@ public class TodoListData {
             "3 May 2021",
             "9 November 2021"
     };
-    static ArrayList<Todo> getListData(){
-        ArrayList<Todo> list = new ArrayList<>();
-        for(int position = 0; position < TodoListData.todoDates.length; position++){
-            Todo todo = new Todo();
-            todo.setTask(todoNames[position]);
-            todo.setDate(todoDates[position]);
-            list.add(todo);
-        }
-        return list;
-    }
+//    static ArrayList<Todo> getListData(){
+//        ArrayList<Todo> list = new ArrayList<>();
+//        for(int position = 0; position < TodoListData.todoDates.length; position++){
+//            Todo todo = new Todo();
+//            todo.setTask(todoNames[position]);
+//            todo.setDate(todoDates[position]);
+//            list.add(todo);
+//        }
+//        return list;
+//    }
 }

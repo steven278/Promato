@@ -6,6 +6,15 @@ public class Todo {
     private String task;
     private String date;
 
+    public Todo() {
+
+    }
+
+    public Todo(String task, String date) {
+        this.task = task;
+        this.date = date;
+    }
+
     public String getTask() {
         return task;
     }
