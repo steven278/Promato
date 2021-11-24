@@ -3,6 +3,7 @@ package id.ac.umn.promato;
 import java.util.Date;
 
 public class Todo {
+    private String userEmail;
     private String task;
     private String date;
 
@@ -10,7 +11,8 @@ public class Todo {
 
     }
 
-    public Todo(String task, String date) {
+    public Todo( String task, String date) {
+//        this.userEmail = userEmail;
         this.task = task;
         this.date = date;
     }
@@ -29,5 +31,13 @@ public class Todo {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 }

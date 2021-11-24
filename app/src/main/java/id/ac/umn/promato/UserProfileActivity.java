@@ -14,6 +14,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
     public class UserProfileActivity extends AppCompatActivity {
     TextView tvUserName;
     TextView tvUserEmail;
@@ -37,6 +40,7 @@ import com.google.firebase.auth.FirebaseAuth;
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         String userName = preferences.getString("username", "");
         String userEmail = preferences.getString("useremail", "");
+        String hashedEmail = md5(userEmail);
         String userPhotoUrl = preferences.getString("userPhoto", "");
 
         tvUserName.setText(userName);
@@ -50,12 +54,31 @@ import com.google.firebase.auth.FirebaseAuth;
         btnMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gotoMainMenu();
+                gotoMainMenu(hashedEmail);
             }
         });
     }
-    public void gotoMainMenu(){
+    public void gotoMainMenu(String hashedEmail){
         Intent intent = new Intent(this, Pomodoro.class);
+        intent.putExtra("useremail", hashedEmail);
         startActivity(intent);
     }
+        public String md5(String s) {
+            try {
+                // Create MD5 Hash
+                MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+                digest.update(s.getBytes());
+                byte messageDigest[] = digest.digest();
+
+                // Create Hex String
+                StringBuffer hexString = new StringBuffer();
+                for (int i=0; i<messageDigest.length; i++)
+                    hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
+                return hexString.toString();
+
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
 }

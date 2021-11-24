@@ -15,7 +15,10 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
+import java.util.UUID;
 
 public class AddNewTask extends AppCompatActivity {
     private Button btn_Submit, btn_date;
@@ -28,6 +31,9 @@ public class AddNewTask extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_task);
+        //retrieve intent value
+        String userEmail = getIntent().getStringExtra("useremail");
+
         btn_Submit = findViewById(R.id.btn_submitNewTask);
         et_task = findViewById(R.id.et_taskName);
         btn_date = findViewById(R.id.et_dateInput);
@@ -35,6 +41,9 @@ public class AddNewTask extends AppCompatActivity {
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        String taskID = createTransactionID();
+
 
         btn_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,11 +73,16 @@ public class AddNewTask extends AppCompatActivity {
 
                 Todo todo = new Todo(task, date);
                 //insert to database
-                reference.child(task).setValue(todo);
+                reference.child(userEmail).child(taskID).setValue(todo);
                 Intent intent = new Intent(AddNewTask.this, Pomodoro.class);
+                intent.putExtra("useremail", userEmail);
                 startActivity(intent);
             }
         });
     }
+    public String createTransactionID(){
+        return UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
+    }
+
 
 }

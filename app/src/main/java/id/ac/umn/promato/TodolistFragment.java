@@ -85,17 +85,23 @@ public class TodolistFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_todolist, container, false);
+        //retrieve intent value
+        String userEmail = getActivity().getIntent().getStringExtra("useremail");
+
+
+
         btn_addTask = v.findViewById(R.id.btn_addTask);
         rvTodo = v.findViewById(R.id.rv_todo);
-        database = FirebaseDatabase.getInstance("https://promato-87428-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("todolist");
+        database = FirebaseDatabase.getInstance("https://promato-87428-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("todolist").child(userEmail);
         rvTodo.setHasFixedSize(true);
 
-//        list.addAll(TodoListData.getListData());
         showRecyclerList();
         btn_addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToFormPage();
+                Intent intent = new Intent(getActivity(),AddNewTask.class);
+                intent.putExtra("useremail", userEmail);
+                startActivity(intent);
             }
         });
         return v;
@@ -124,10 +130,6 @@ public class TodolistFragment extends Fragment {
         //
         //ListTodoAdapter listtodoadapter = new ListTodoAdapter(list);
        // rvTodo.setAdapter(listtodoadapter);
-    }
-    private void goToFormPage(){
-        Intent intent = new Intent(getActivity(),AddNewTask.class);
-        startActivity(intent);
     }
 
 }
