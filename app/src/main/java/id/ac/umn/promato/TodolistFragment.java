@@ -28,7 +28,7 @@ import java.util.List;
  * Use the {@link TodolistFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TodolistFragment extends Fragment {
+public class TodolistFragment extends Fragment{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -75,10 +75,13 @@ public class TodolistFragment extends Fragment {
     private RecyclerView rvTodo;
     private ArrayList<Todo> list = new ArrayList<>();
     private Button btn_addTask;
-
-    //baru
     ListTodoAdapter listTodoAdapter;
     DatabaseReference database;
+
+    private RecyclerView rvProgress;
+    private ArrayList<Todo> listProgress = new ArrayList<>();
+    ListInProgressAdapter listInProgressAdapter;
+    DatabaseReference databaseProgress;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,13 +91,11 @@ public class TodolistFragment extends Fragment {
         //retrieve intent value
         String userEmail = getActivity().getIntent().getStringExtra("useremail");
 
-
-
+        //todo
         btn_addTask = v.findViewById(R.id.btn_addTask);
         rvTodo = v.findViewById(R.id.rv_todo);
-        database = FirebaseDatabase.getInstance("https://promato-87428-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("todolist").child(userEmail);
+        database = FirebaseDatabase.getInstance("https://promato-87428-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("todolist").child("todo").child(userEmail);
         rvTodo.setHasFixedSize(true);
-
         showRecyclerList();
         btn_addTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,11 +105,18 @@ public class TodolistFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        //in progress
+        rvProgress = v.findViewById(R.id.rv_inProgress);
+        databaseProgress = FirebaseDatabase.getInstance("https://promato-87428-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("todolist").child("inProgress").child(userEmail);
+        rvProgress.setHasFixedSize(true);
+        showProgressRecyclerList();
+
+
         return v;
     }
     private void showRecyclerList(){
         rvTodo.setLayoutManager(new LinearLayoutManager(getActivity()));
-        //baru
         listTodoAdapter = new ListTodoAdapter(list);
         rvTodo.setAdapter(listTodoAdapter);
         database.addValueEventListener(new ValueEventListener() {
@@ -127,9 +135,28 @@ public class TodolistFragment extends Fragment {
 
             }
         });
-        //
-        //ListTodoAdapter listtodoadapter = new ListTodoAdapter(list);
-       // rvTodo.setAdapter(listtodoadapter);
+    }
+
+    private void showProgressRecyclerList(){
+        rvProgress.setLayoutManager(new LinearLayoutManager(getActivity()));
+        listInProgressAdapter = new ListInProgressAdapter(listProgress);
+        rvProgress.setAdapter(listInProgressAdapter);
+        databaseProgress.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listProgress.clear();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Todo todoProgress = dataSnapshot.getValue(Todo.class);
+                    listProgress.add(todoProgress);
+                }
+                listInProgressAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 }

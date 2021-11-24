@@ -80,8 +80,6 @@
                 </androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
 
-
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_addTask"
                 android:layout_width="wrap_content"
@@ -89,6 +87,27 @@
                 android:text="addtask"
                 android:layout_gravity="end"
                 android:layout_marginRight="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:text="In Progress" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_inProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.1"
+                    tools:listitem="@layout/item_row_todo">
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
 
         </LinearLayout>
 
