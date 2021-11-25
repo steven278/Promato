@@ -31,7 +31,7 @@ public class ListInProgressAdapter extends RecyclerView.Adapter<ListInProgressAd
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listTodo.size();
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder{

@@ -5,14 +5,16 @@ import java.util.Date;
 public class Todo {
     private String task;
     private String date;
+    public String taskID;
 
     public Todo() {
 
     }
 
-    public Todo( String task, String date) {
+    public Todo(String task, String date, String taskID) {
         this.task = task;
         this.date = date;
+        this.taskID = taskID;
     }
 
     public String getTask() {
@@ -31,4 +33,11 @@ public class Todo {
         this.date = date;
     }
 
+    public String getTaskID() {
+        return taskID;
+    }
+
+    public void setTaskID(String taskID) {
+        this.taskID = taskID;
+    }
 }
