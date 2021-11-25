@@ -83,6 +83,11 @@ public class TodolistFragment extends Fragment{
     ListInProgressAdapter listInProgressAdapter;
     DatabaseReference databaseProgress;
 
+    private RecyclerView rvFinished;
+    private ArrayList<Todo> listFinished = new ArrayList<>();
+    ListFinishedAdapter listFinishedAdapter;
+    DatabaseReference databaseFinished;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -112,6 +117,11 @@ public class TodolistFragment extends Fragment{
         rvProgress.setHasFixedSize(true);
         showProgressRecyclerList();
 
+        //finished
+        rvFinished = v.findViewById(R.id.rv_finished);
+        databaseFinished = FirebaseDatabase.getInstance("https://promato-87428-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("todolist").child("finished").child(userEmail);
+        rvFinished.setHasFixedSize(true);
+        showFinishedRecyclerList();
 
         return v;
     }
@@ -150,6 +160,28 @@ public class TodolistFragment extends Fragment{
                     listProgress.add(todoProgress);
                 }
                 listInProgressAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void showFinishedRecyclerList(){
+        rvFinished.setLayoutManager(new LinearLayoutManager(getActivity()));
+        listFinishedAdapter = new ListFinishedAdapter(listFinished);
+        rvFinished.setAdapter(listFinishedAdapter);
+        databaseFinished.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listFinished.clear();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Todo todoFinished = dataSnapshot.getValue(Todo.class);
+                    listFinished.add(todoFinished);
+                }
+                listFinishedAdapter.notifyDataSetChanged();
             }
 
             @Override

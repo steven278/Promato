@@ -35,18 +35,14 @@ public class ListTodoAdapter extends RecyclerView.Adapter<ListTodoAdapter.ListVi
     @Override
     public void onBindViewHolder(@NonNull ListTodoAdapter.ListViewHolder holder, int position) {
         Todo todo = listTodo.get(position);
-//        String currentTask = todo.getTask();
-//        String currentDate = todo.getDate();
         holder.tvTodo.setText(todo.getTask());
         holder.tvDate.setText(todo.getDate());
         holder.btn_addProgress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String taskID = createTransactionID();
                 String taskID = todo.getTaskID();
                 holder.reference.child("inProgress").child(holder.userEmail).child(taskID).setValue(todo);
                 holder.reference.child("todo").child(holder.userEmail).child(taskID).removeValue();
-
             }
         });
 //        holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -56,9 +52,6 @@ public class ListTodoAdapter extends RecyclerView.Adapter<ListTodoAdapter.ListVi
 //                holder.itemView.getContext().startActivity(intent);
 //            }
 //        });
-    }
-    public String createTransactionID(){
-        return UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
     }
 
     @Override

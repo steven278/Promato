@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:weightSum="2"
+    android:padding="4dp">
+    <TextView
+        android:id="@+id/tv_inProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_weight="0.8"
+        android:layout_marginRight="12dp"
+        tools:text="@string/todo" />
+    <TextView
+        android:id="@+id/tv_dateInProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:layout_weight="1.2"
+        tools:text="@string/date" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_addToFinished"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finish"
+        android:textSize="10sp"
+        android:layout_weight="0.3"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+        app:icon="@drawable/ic_baseline_add_24"
+        app:iconSize="10sp"/>
+</LinearLayout>

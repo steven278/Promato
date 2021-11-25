@@ -16,20 +16,20 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class ListInProgressAdapter extends RecyclerView.Adapter<ListInProgressAdapter.ListViewHolder> {
+public class ListFinishedAdapter extends RecyclerView.Adapter<ListFinishedAdapter.ListViewHolder> {
     private ArrayList<Todo> listTodo;
-    public ListInProgressAdapter(ArrayList<Todo> list){
+    public ListFinishedAdapter(ArrayList<Todo> list){
         this.listTodo = list;
     }
     @NonNull
     @Override
-    public ListInProgressAdapter.ListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_inprogress, viewGroup, false);
+    public ListFinishedAdapter.ListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_finished, viewGroup, false);
         return new ListViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListInProgressAdapter.ListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ListFinishedAdapter.ListViewHolder holder, int position) {
         Todo todo = listTodo.get(position);
         holder.tvTodo.setText(todo.getTask());
         holder.tvDate.setText(todo.getDate());
@@ -37,8 +37,7 @@ public class ListInProgressAdapter extends RecyclerView.Adapter<ListInProgressAd
             @Override
             public void onClick(View view) {
                 String taskID = todo.getTaskID();
-                holder.reference.child("finished").child(holder.userEmail).child(taskID).setValue(todo);
-                holder.reference.child("inProgress").child(holder.userEmail).child(taskID).removeValue();
+                holder.reference.child("finished").child(holder.userEmail).child(taskID).removeValue();
             }
         });
     }
@@ -58,9 +57,9 @@ public class ListInProgressAdapter extends RecyclerView.Adapter<ListInProgressAd
             super(itemView);
             Intent email = ((Activity) itemView.getContext()).getIntent();
             userEmail= email.getStringExtra("useremail");
-            tvTodo = itemView.findViewById(R.id.tv_inProgress);
-            tvDate = itemView.findViewById(R.id.tv_dateInProgress);
-            btn_addProgress = itemView.findViewById(R.id.btn_addToFinished);
+            tvTodo = itemView.findViewById(R.id.tv_finished);
+            tvDate = itemView.findViewById(R.id.tv_dateFinished);
+            btn_addProgress = itemView.findViewById(R.id.btn_remove);
             rootNode = FirebaseDatabase.getInstance("https://promato-87428-default-rtdb.asia-southeast1.firebasedatabase.app/");//panggil root node database
             reference = rootNode.getReference("todolist");
         }
