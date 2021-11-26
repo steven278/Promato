@@ -65,6 +65,7 @@ public class ListTodoAdapter extends RecyclerView.Adapter<ListTodoAdapter.ListVi
         DatabaseReference reference;
         FirebaseDatabase rootNode;
         String userEmail;
+
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
             Intent email = ((Activity) itemView.getContext()).getIntent();

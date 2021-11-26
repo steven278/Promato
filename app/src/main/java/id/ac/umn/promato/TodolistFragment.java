@@ -129,6 +129,7 @@ public class TodolistFragment extends Fragment{
         rvTodo.setLayoutManager(new LinearLayoutManager(getActivity()));
         listTodoAdapter = new ListTodoAdapter(list);
         rvTodo.setAdapter(listTodoAdapter);
+        rvTodo.setNestedScrollingEnabled(false);
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -151,6 +152,7 @@ public class TodolistFragment extends Fragment{
         rvProgress.setLayoutManager(new LinearLayoutManager(getActivity()));
         listInProgressAdapter = new ListInProgressAdapter(listProgress);
         rvProgress.setAdapter(listInProgressAdapter);
+        rvProgress.setNestedScrollingEnabled(false);
         databaseProgress.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -173,6 +175,7 @@ public class TodolistFragment extends Fragment{
         rvFinished.setLayoutManager(new LinearLayoutManager(getActivity()));
         listFinishedAdapter = new ListFinishedAdapter(listFinished);
         rvFinished.setAdapter(listFinishedAdapter);
+        rvFinished.setNestedScrollingEnabled(false);
         databaseFinished.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
