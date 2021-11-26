@@ -22,6 +22,7 @@ import java.util.UUID;
 
 public class AddNewTask extends AppCompatActivity {
     private Button btn_Submit, btn_date;
+
     private DatePickerDialog.OnDateSetListener datePickerDialog;
     EditText et_task;
 
@@ -70,8 +71,12 @@ public class AddNewTask extends AppCompatActivity {
                 //Get all values from edittext
                 String task = et_task.getText().toString();
                 String date = btn_date.getText().toString();
+            //
 
-                Todo todo = new Todo(task, date, taskID);
+                int photo = 1;
+
+            //
+                Todo todo = new Todo(task, date, taskID,photo);
                 //insert to database
                 reference.child("todo").child(userEmail).child(taskID).setValue(todo);
                 Intent intent = new Intent(AddNewTask.this, Pomodoro.class);

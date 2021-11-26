@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,6 +34,10 @@ public class CalendarListAdapter extends RecyclerView.Adapter<CalendarListAdapte
     public void onBindViewHolder(@NonNull CalendarListAdapter.ListViewHolder holder, int position) {
         Todo todo = listTodo.get(position);
         holder.tvTodo.setText(todo.getTask());
+        Glide.with(holder.itemView.getContext())
+                .load(todo.getStatusIcon())
+                .apply(new RequestOptions().override(16,16))
+                .into(holder.imgStatusIcon);
     }
 
     @Override
@@ -43,11 +50,13 @@ public class CalendarListAdapter extends RecyclerView.Adapter<CalendarListAdapte
         DatabaseReference reference;
         FirebaseDatabase rootNode;
         String userEmail;
+        ImageView imgStatusIcon;
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
             Intent email = ((Activity) itemView.getContext()).getIntent();
             userEmail= email.getStringExtra("useremail");
             tvTodo = itemView.findViewById(R.id.tv_calendarTodoList);
+            imgStatusIcon = itemView.findViewById(R.id.img_StatusIcon);
             rootNode = FirebaseDatabase.getInstance("https://promato-87428-default-rtdb.asia-southeast1.firebasedatabase.app/");//panggil root node database
             reference = rootNode.getReference("todolist");
         }

@@ -6,15 +6,17 @@ public class Todo {
     private String task;
     private String date;
     public String taskID;
+    public int statusIcon;
 
     public Todo() {
 
     }
 
-    public Todo(String task, String date, String taskID) {
+    public Todo(String task, String date, String taskID, int statusIcon) {
         this.task = task;
         this.date = date;
         this.taskID = taskID;
+        this.statusIcon = statusIcon;
     }
 
     public String getTask() {
@@ -39,5 +41,13 @@ public class Todo {
 
     public void setTaskID(String taskID) {
         this.taskID = taskID;
+    }
+
+    public int getStatusIcon() {
+        return statusIcon;
+    }
+
+    public void setStatusIcon(int statusIcon) {
+        this.statusIcon = statusIcon;
     }
 }
