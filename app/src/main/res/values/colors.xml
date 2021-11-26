@@ -8,5 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="biru_tomat">#57AEFF</color>
+    <color name="orange_tomat">#F95428</color>
+    <color name="hijau_tomat">#5BD148</color>
+    <color name="busuk_gelap_tomat">#6B6B6B</color>
     <color name="dark_gray">#6B6B6B</color>
 </resources>
