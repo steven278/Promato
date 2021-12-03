@@ -52,7 +52,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_calendar"
+                    android:id="@+id/rv_calendar_todo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_calendar_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_calendar_finish"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 

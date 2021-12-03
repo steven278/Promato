@@ -76,7 +76,7 @@ public class AddNewTask extends AppCompatActivity {
                 int photo = 1;
 
             //
-                Todo todo = new Todo(task, date, taskID,photo);
+                Todo todo = new Todo(task, date, taskID, R.drawable.mini_circle);
                 //insert to database
                 reference.child("todo").child(userEmail).child(taskID).setValue(todo);
                 Intent intent = new Intent(AddNewTask.this, Pomodoro.class);

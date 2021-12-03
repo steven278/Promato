@@ -10,10 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Promato">
         <activity
-            android:name=".TodoDoneActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".AddNewTask"
             android:exported="true"
             android:screenOrientation="portrait"/>
