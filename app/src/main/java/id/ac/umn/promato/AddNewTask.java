@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.inputmethodservice.Keyboard;
-import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,8 +13,6 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -76,7 +72,7 @@ public class AddNewTask extends AppCompatActivity {
                 int photo = 1;
 
             //
-                Todo todo = new Todo(task, date, taskID, R.drawable.mini_circle);
+                Todo todo = new Todo(task, date, taskID, R.drawable.mini_circle_blue);
                 //insert to database
                 reference.child("todo").child(userEmail).child(taskID).setValue(todo);
                 Intent intent = new Intent(AddNewTask.this, Pomodoro.class);

@@ -8,7 +8,7 @@
         android:id="@+id/img_StatusIcon"
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:src="@drawable/mini_circle"
+        android:src="@drawable/mini_circle_blue"
         android:layout_marginTop="4dp"
         android:layout_marginLeft="12dp"/>
     <TextView

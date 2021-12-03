@@ -42,6 +42,7 @@ public class ListTodoAdapter extends RecyclerView.Adapter<ListTodoAdapter.ListVi
             public void onClick(View view) {
                 String taskID = todo.getTaskID();
                 holder.reference.child("inProgress").child(holder.userEmail).child(taskID).setValue(todo);
+                holder.reference.child("inProgress").child(holder.userEmail).child(taskID).child("statusIcon").setValue(R.drawable.mini_circle_red);
                 holder.reference.child("todo").child(holder.userEmail).child(taskID).removeValue();
             }
         });

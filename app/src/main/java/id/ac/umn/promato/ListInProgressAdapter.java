@@ -38,6 +38,7 @@ public class ListInProgressAdapter extends RecyclerView.Adapter<ListInProgressAd
             public void onClick(View view) {
                 String taskID = todo.getTaskID();
                 holder.reference.child("finished").child(holder.userEmail).child(taskID).setValue(todo);
+                holder.reference.child("finished").child(holder.userEmail).child(taskID).child("statusIcon").setValue(R.drawable.mini_circle_green);
                 holder.reference.child("inProgress").child(holder.userEmail).child(taskID).removeValue();
             }
         });
