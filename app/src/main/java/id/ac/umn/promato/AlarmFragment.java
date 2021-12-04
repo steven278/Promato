@@ -18,7 +18,7 @@ import android.widget.TextView;
  * Use the {@link AlarmFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AlarmFragment extends Fragment implements View.OnClickListener {
+public class AlarmFragment extends Fragment implements View.OnClickListener, DialogCycleFragment.OnInputCycleAdd {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,10 +50,15 @@ public class AlarmFragment extends Fragment implements View.OnClickListener {
         fragment.setArguments(args);
         return fragment;
     }
+
+    private int cycle;
+    private int cycleTemp;
+    private int restCycle = 1;
+
     private Chronometer podomoroTime;
     private Button startPause, stopPodomoro;
 
-    private boolean isRunning, paused=true;
+    private boolean isRunning, paused=true, working, resting, superRest;
     private  long currentTVal;
 
     private TextView status;
@@ -81,6 +86,13 @@ public class AlarmFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        //-------Cycle Fragment Dialog--------
+        DialogCycleFragment cycleDialog = new DialogCycleFragment();
+        cycleDialog.setTargetFragment(AlarmFragment.this, 1);
+        cycleDialog.show(getFragmentManager(), "DialogCycleFragment");
+        //-----------------------
+
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_alarm, container, false);
 
@@ -93,9 +105,49 @@ public class AlarmFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
 
-                if((SystemClock.elapsedRealtime() - podomoroTime.getBase()) > 1500000)
+                if(working && (SystemClock.elapsedRealtime() - podomoroTime.getBase()) > 1500000)
                 {
+                    podomoroTime.setBase(SystemClock.elapsedRealtime());
+                    currentTVal = 0;
+                    PausePodomoro();
+
+                    podomoroTime.setBase(SystemClock.elapsedRealtime() - currentTVal);
+                    podomoroTime.start();
+                    startPause.setText("Pause");
+                    paused = false;
+                    isRunning = true;
+
                     status.setText("Rest");
+                    resting = true;
+                    working = false;
+
+                    cycleTemp--;
+                }
+                if(cycleTemp == 0)
+                {
+                    PausePodomoro();
+                }
+
+                int restTime = 300000;
+                if (restCycle%4==0) restTime = 900000;
+
+                if(resting && (SystemClock.elapsedRealtime() - podomoroTime.getBase()) > restTime)
+                {
+                    podomoroTime.setBase(SystemClock.elapsedRealtime());
+                    currentTVal = 0;
+                    PausePodomoro();
+
+                    podomoroTime.setBase(SystemClock.elapsedRealtime() - currentTVal);
+                    podomoroTime.start();
+                    startPause.setText("Pause");
+                    paused = false;
+                    isRunning = true;
+
+                    status.setText("Working");
+                    resting = false;
+                    working = true;
+
+                    restCycle++;
                 }
             }
         });
@@ -113,23 +165,51 @@ public class AlarmFragment extends Fragment implements View.OnClickListener {
                 if(!isRunning && paused)
                 {
                     status.setText("Working");
+                    if(resting)
+                    {
+                        status.setText("Rest");
+                    }
                     podomoroTime.setBase(SystemClock.elapsedRealtime() - currentTVal);
                     podomoroTime.start();
                     isRunning = true;
+                    working = true;
                     startPause.setText("Pause");
                     paused = false;
                 }
-                else
+                else  if(isRunning && paused)
+                {
+                    if(!resting)
+                    {
+                        status.setText("Working");
+                    }
+                    else
+                    {
+                        status.setText("Rest");
+                    }
+                    podomoroTime.setBase(SystemClock.elapsedRealtime() - currentTVal);
+                    podomoroTime.start();
+                    startPause.setText("Pause");
+                    paused = false;
+                }
+                else if(!paused)
                 {
                     PausePodomoro();
                 }
                 break;
             case R.id.Stop:
+                working=false;
+                resting=false;
                 status.setText("Status");
                 podomoroTime.setBase(SystemClock.elapsedRealtime());
                 currentTVal = 0;
                 PausePodomoro();
                 break;
         }
+    }
+
+    @Override
+    public void SetCycle(String cycle) {
+        this.cycle = Integer.parseInt(cycle);
+        cycleTemp = Integer.parseInt(cycle);
     }
 }
