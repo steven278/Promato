@@ -4,6 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity">
+    tools:context=".SettingsActivity"
+    android:background="@drawable/ic_birutomatbackground">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TodoListTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaa"
+                android:textStyle="bold"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:elevation="10dp"
+                android:text="@string/setting"
+                android:textColor="@color/white"
+                android:textSize="24sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="800dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/backgroundputih"
+                android:orientation="vertical"
+                android:weightSum="2"
+                tools:layout_editor_absoluteX="0dp">
+
+                
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
