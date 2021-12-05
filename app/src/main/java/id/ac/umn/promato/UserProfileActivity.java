@@ -21,7 +21,7 @@ import java.security.NoSuchAlgorithmException;
     TextView tvUserName;
     TextView tvUserEmail;
     ImageView userImageView;
-    Button btnSignOut,btnMainMenu;
+//    Button btnSignOut,btnMainMenu;
     FirebaseAuth mAuth;
 
     @Override
@@ -32,8 +32,8 @@ import java.security.NoSuchAlgorithmException;
         tvUserName = findViewById(R.id.userName);
         tvUserEmail = findViewById(R.id.userEmail);
         userImageView = findViewById(R.id.userImageView);
-        btnSignOut = findViewById(R.id.btnLogout);
-        btnMainMenu = findViewById(R.id.gotoMainMenu);
+//        btnSignOut = findViewById(R.id.btnLogout);
+//        btnMainMenu = findViewById(R.id.gotoMainMenu);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -46,40 +46,42 @@ import java.security.NoSuchAlgorithmException;
         tvUserName.setText(userName);
         tvUserEmail.setText(userEmail);
         Glide.with(this).load(userPhotoUrl).into(userImageView);
-        btnSignOut.setOnClickListener(view -> {
-            mAuth.signOut();
-            startActivity(new Intent(UserProfileActivity.this, LandingPageActivity.class));
-        });
+//        btnSignOut.setOnClickListener(view -> {
+//            mAuth.signOut();
+//            startActivity(new Intent(UserProfileActivity.this, LandingPageActivity.class));
+//        });
 
-        btnMainMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                gotoMainMenu(hashedEmail);
-            }
-        });
+//        btnMainMenu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                gotoMainMenu(hashedEmail);
+//            }
+//        });
     }
-    public void gotoMainMenu(String hashedEmail){
-        Intent intent = new Intent(this, Pomodoro.class);
-        intent.putExtra("useremail", hashedEmail);
-        finish();
-        startActivity(intent);
-    }
-        public String md5(String s) {
-            try {
-                // Create MD5 Hash
-                MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
-                digest.update(s.getBytes());
-                byte messageDigest[] = digest.digest();
+//
+//    public void gotoMainMenu(String hashedEmail){
+//        Intent intent = new Intent(this, Pomodoro.class);
+//        intent.putExtra("useremail", hashedEmail);
+//        finish();
+//        startActivity(intent);
+//    }
 
-                // Create Hex String
-                StringBuffer hexString = new StringBuffer();
-                for (int i=0; i<messageDigest.length; i++)
-                    hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
-                return hexString.toString();
+    public String md5(String s) {
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
 
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
-            return "";
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i=0; i<messageDigest.length; i++)
+                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
+        return "";
+    }
 }

@@ -21,7 +21,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 android:elevation="10dp"
-                android:text="@string/setting"
+                android:text="@string/settings"
                 android:textColor="@color/white"
                 android:textSize="24sp"/>
 
@@ -34,7 +34,160 @@
                 android:weightSum="2"
                 tools:layout_editor_absoluteX="0dp">
 
-                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/userImageView"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="30dp"
+                        tools:src="@tools:sample/avatars"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/userName"
+                            android:layout_width="237dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="35dp"
+                            android:text="TextView"
+                            android:textSize="20dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/userImageView" />
+
+                        <TextView
+                            android:id="@+id/userEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:text="TextView"
+                            android:textSize="12dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.498"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#DCDCDC"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="30dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginVertical="15dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_sound"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="17dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Sound"
+                        android:gravity="center_vertical"
+                        android:textColor="#7E7E7E"
+                        android:textFontWeight="400"
+                        android:textSize="20dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginVertical="15dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_dark_mode"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="sans-serif"
+                        android:layout_marginStart="17dp"
+                        android:text="Dark Mode"
+                        android:textColor="#7E7E7E"
+                        android:gravity="center_vertical"
+                        android:textFontWeight="400"
+                        android:textSize="20dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginVertical="15dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:src="@drawable/ic_alarm"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="sans-serif"
+                        android:layout_marginStart="20dp"
+                        android:text="Alarm Tone"
+                        android:textColor="#7E7E7E"
+                        android:gravity="center_vertical"
+                        android:textFontWeight="400"
+                        android:textSize="20dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#DCDCDC"
+                    android:layout_marginHorizontal="30dp"/>
+
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp"
+                    android:backgroundTint="#F92828"
+                    app:icon="@drawable/ic_logout"
+                    android:text=" Logout"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginHorizontal="30dp"
+                    android:text="v 1.0.0"
+                    android:textSize="15dp"
+                    android:layout_gravity="end
+"/>
 
             </LinearLayout>
 

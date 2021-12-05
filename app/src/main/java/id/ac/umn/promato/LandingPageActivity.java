@@ -23,6 +23,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class LandingPageActivity extends AppCompatActivity {
 
     SignInButton btnAuthGoogle;
@@ -51,9 +54,31 @@ public class LandingPageActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
 
         if(user != null) {
-            startActivity(new Intent(LandingPageActivity.this, UserProfileActivity.class));
+            Intent intent = new Intent(LandingPageActivity.this, Pomodoro.class);
+            String hashedEmail = md5(user.getEmail());
+            intent.putExtra("useremail", hashedEmail);
             finish();
+            startActivity(intent);
         }
+    }
+
+    public String md5(String s) {
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i=0; i<messageDigest.length; i++)
+                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     private void requestGoogleSignIn(){
@@ -108,7 +133,14 @@ public class LandingPageActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Intent intent = new Intent(LandingPageActivity.this, UserProfileActivity.class);
+                            mAuth = FirebaseAuth.getInstance();
+
+                            SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                            String userEmail = preferences.getString("useremail", "");
+                            String hashedEmail = md5(userEmail);
+
+                            Intent intent = new Intent(LandingPageActivity.this, Pomodoro.class);
+                            intent.putExtra("useremail", hashedEmail);
                             startActivity(intent);
                             finish();
 
