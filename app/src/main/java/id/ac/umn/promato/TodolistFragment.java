@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -75,24 +76,37 @@ public class TodolistFragment extends Fragment{
     private RecyclerView rvTodo;
     private ArrayList<Todo> list = new ArrayList<>();
     private Button btn_addTask;
-    ListTodoAdapter listTodoAdapter;
-    DatabaseReference database;
+    private ListTodoAdapter listTodoAdapter;
+    private DatabaseReference database;
 
     private RecyclerView rvProgress;
     private ArrayList<Todo> listProgress = new ArrayList<>();
-    ListInProgressAdapter listInProgressAdapter;
-    DatabaseReference databaseProgress;
+    private ListInProgressAdapter listInProgressAdapter;
+    private DatabaseReference databaseProgress;
 
     private RecyclerView rvFinished;
     private ArrayList<Todo> listFinished = new ArrayList<>();
-    ListFinishedAdapter listFinishedAdapter;
-    DatabaseReference databaseFinished;
+    private ListFinishedAdapter listFinishedAdapter;
+    private DatabaseReference databaseFinished;
+
+    private ImageButton btnSetting;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_todolist, container, false);
+
+        btnSetting = v.findViewById(R.id.setting_btn_todolist);
+        btnSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SettingsActivity.class);
+//                getActivity().finish();
+                startActivity(intent);
+            }
+        });
+
         //retrieve intent value
         String userEmail = getActivity().getIntent().getStringExtra("useremail");
 

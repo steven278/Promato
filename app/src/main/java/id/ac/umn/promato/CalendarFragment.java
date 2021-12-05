@@ -1,5 +1,6 @@
 package id.ac.umn.promato;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -77,12 +79,24 @@ public class CalendarFragment extends Fragment {
     private ArrayList<Todo> listTodo = new ArrayList<>();
     private ArrayList<Todo> listProgress = new ArrayList<>();
     private ArrayList<Todo> listFinish = new ArrayList<>();
-    CalendarListAdapter calendarListTodoAdapter, calendarListProgressAdapter, calendarListFinishAdapter;
-    DatabaseReference databaseTodo, databaseProgress, databaseFinish;
-    Query dbqueryTodo, dbqueryProgress, dbqueryFinish;
+    private CalendarListAdapter calendarListTodoAdapter, calendarListProgressAdapter, calendarListFinishAdapter;
+    private DatabaseReference databaseTodo, databaseProgress, databaseFinish;
+    private Query dbqueryTodo, dbqueryProgress, dbqueryFinish;
+
+    private ImageButton btnSetting;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_calendar, container, false);
+
+        btnSetting = v.findViewById(R.id.setting_btn_todolist);
+        btnSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SettingsActivity.class);
+//                getActivity().finish();
+                startActivity(intent);
+            }
+        });
 
         CalendarView calendarView = v.findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {

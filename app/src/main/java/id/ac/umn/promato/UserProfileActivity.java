@@ -61,6 +61,7 @@ import java.security.NoSuchAlgorithmException;
     public void gotoMainMenu(String hashedEmail){
         Intent intent = new Intent(this, Pomodoro.class);
         intent.putExtra("useremail", hashedEmail);
+        finish();
         startActivity(intent);
     }
         public String md5(String s) {

@@ -52,6 +52,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
         if(user != null) {
             startActivity(new Intent(LandingPageActivity.this, UserProfileActivity.class));
+            finish();
         }
     }
 
@@ -109,6 +110,7 @@ public class LandingPageActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Intent intent = new Intent(LandingPageActivity.this, UserProfileActivity.class);
                             startActivity(intent);
+                            finish();
 
                         } else {
                             // If sign in fails, display a message to the user.
