@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -18,10 +19,11 @@ import java.util.Calendar;
 import java.util.UUID;
 
 public class AddNewTask extends AppCompatActivity {
-    private Button btn_Submit, btn_date;
+    private Button btn_Submit;
 
     private DatePickerDialog.OnDateSetListener datePickerDialog;
     EditText et_task;
+    TextView btn_date;
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
