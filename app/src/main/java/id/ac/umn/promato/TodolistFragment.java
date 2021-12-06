@@ -88,7 +88,6 @@ public class TodolistFragment extends Fragment{
     private ArrayList<Todo> listFinished = new ArrayList<>();
     private ListFinishedAdapter listFinishedAdapter;
     private DatabaseReference databaseFinished;
-
     private ImageButton btnSetting;
 
     @Override

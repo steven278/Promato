@@ -7,15 +7,16 @@
     android:orientation="horizontal"
     android:weightSum="2"
     android:padding="4dp">
+
     <TextView
         android:id="@+id/tv_todo"
-        android:layout_width="match_parent"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="2dp"
+        android:layout_weight="0.8"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:layout_weight="0.8"
-        android:layout_marginRight="12dp"
         tools:text="@string/todo" />
     <TextView
         android:id="@+id/tv_date"
@@ -25,14 +26,15 @@
         android:maxLines="2"
         android:layout_weight="1.2"
         tools:text="@string/date" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_addToProgress"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="0.3"
         android:text="Progress"
         android:textSize="10sp"
-        android:layout_weight="0.3"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         app:icon="@drawable/ic_baseline_add_24"
-        app:iconSize="10sp"/>
+        app:iconSize="10sp" />
 </LinearLayout>
