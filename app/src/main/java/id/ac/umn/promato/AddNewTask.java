@@ -79,7 +79,7 @@ public class AddNewTask extends AppCompatActivity {
                     intent.putExtra("useremail", userEmail);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(AddNewTask.this, "Salam dari binjai 👊🌴", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNewTask.this, "Semua field harus diisi terlebih dahulu. Salam dari binjai 👊🌴", Toast.LENGTH_SHORT).show();
                 }
             }
         });
