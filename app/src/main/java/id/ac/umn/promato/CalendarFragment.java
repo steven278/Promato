@@ -1,5 +1,6 @@
 package id.ac.umn.promato;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,11 +9,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -72,14 +75,28 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    private RecyclerView rvCalendar;
-    private ArrayList<Todo> list = new ArrayList<>();
-    CalendarListAdapter calendarListAdapter;
-    DatabaseReference database;
-    Query dbquery;
+    private RecyclerView rvCalendarTodo, rvCalendarProgress, rvCalendarFinish;
+    private ArrayList<Todo> listTodo = new ArrayList<>();
+    private ArrayList<Todo> listProgress = new ArrayList<>();
+    private ArrayList<Todo> listFinish = new ArrayList<>();
+    private CalendarListAdapter calendarListTodoAdapter, calendarListProgressAdapter, calendarListFinishAdapter;
+    private DatabaseReference databaseTodo, databaseProgress, databaseFinish;
+    private Query dbqueryTodo, dbqueryProgress, dbqueryFinish;
+
+    private ImageButton btnSetting;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_calendar, container, false);
+
+        btnSetting = v.findViewById(R.id.setting_btn_todolist);
+        btnSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SettingsActivity.class);
+//                getActivity().finish();
+                startActivity(intent);
+            }
+        });
 
         CalendarView calendarView = v.findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -89,10 +106,20 @@ public class CalendarFragment extends Fragment {
                 String clickedDate = dayOfMonth+"/"+(month+1)+"/"+year;
                 Toast.makeText(getActivity(), date, Toast.LENGTH_SHORT).show();
                 String userEmail = getActivity().getIntent().getStringExtra("useremail");
-                rvCalendar = v.findViewById(R.id.rv_calendar);
-                database = FirebaseDatabase.getInstance("https://promato-87428-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("todolist").child("todo").child(userEmail);
-                dbquery = database.orderByChild("date").equalTo(clickedDate);
-                rvCalendar.setHasFixedSize(true);
+                rvCalendarTodo = v.findViewById(R.id.rv_calendar_todo);
+                databaseTodo = FirebaseDatabase.getInstance("https://promato-87428-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("todolist").child("todo").child(userEmail);
+                dbqueryTodo = databaseTodo.orderByChild("date").equalTo(clickedDate);
+                rvCalendarTodo.setHasFixedSize(true);
+
+                rvCalendarProgress = v.findViewById(R.id.rv_calendar_progress);
+                databaseProgress = FirebaseDatabase.getInstance("https://promato-87428-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("todolist").child("inProgress").child(userEmail);
+                dbqueryProgress = databaseProgress.orderByChild("date").equalTo(clickedDate);
+                rvCalendarProgress.setHasFixedSize(true);
+
+                rvCalendarFinish = v.findViewById(R.id.rv_calendar_finish);
+                databaseFinish = FirebaseDatabase.getInstance("https://promato-87428-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("todolist").child("finished").child(userEmail);
+                dbqueryFinish = databaseFinish.orderByChild("date").equalTo(clickedDate);
+                rvCalendarFinish.setHasFixedSize(true);
                 showRecyclerList();
             }
         });
@@ -100,18 +127,58 @@ public class CalendarFragment extends Fragment {
         return v;
     }
     public void showRecyclerList(){
-        rvCalendar.setLayoutManager(new LinearLayoutManager(getActivity()));
-        calendarListAdapter = new CalendarListAdapter(list);
-        rvCalendar.setAdapter(calendarListAdapter);
-        dbquery.addListenerForSingleValueEvent(new ValueEventListener() {
+        rvCalendarTodo.setLayoutManager(new LinearLayoutManager(getActivity()));
+        calendarListTodoAdapter = new CalendarListAdapter(listTodo);
+        rvCalendarTodo.setAdapter(calendarListTodoAdapter);
+        dbqueryTodo.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
+                listTodo.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Todo todoProgress = dataSnapshot.getValue(Todo.class);
-                    list.add(todoProgress);
+                    listTodo.add(todoProgress);
                 }
-                calendarListAdapter.notifyDataSetChanged();
+                calendarListTodoAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        rvCalendarProgress.setLayoutManager(new LinearLayoutManager(getActivity()));
+        calendarListProgressAdapter = new CalendarListAdapter(listProgress);
+        rvCalendarProgress.setAdapter(calendarListProgressAdapter);
+        dbqueryProgress.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listProgress.clear();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Todo todoProgress = dataSnapshot.getValue(Todo.class);
+                    listProgress.add(todoProgress);
+                }
+                calendarListProgressAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        rvCalendarFinish.setLayoutManager(new LinearLayoutManager(getActivity()));
+        calendarListFinishAdapter = new CalendarListAdapter(listFinish);
+        rvCalendarFinish.setAdapter(calendarListFinishAdapter);
+        dbqueryFinish.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listFinish.clear();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Todo todoProgress = dataSnapshot.getValue(Todo.class);
+                    listFinish.add(todoProgress);
+                }
+                calendarListFinishAdapter.notifyDataSetChanged();
             }
 
             @Override

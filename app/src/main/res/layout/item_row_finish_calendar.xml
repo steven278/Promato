@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
-        android:id="@+id/img_StatusIcon"
+        android:id="@+id/img_StatusIconFinish"
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:src="@drawable/mini_circle_blue"
         android:layout_marginTop="4dp"
         android:layout_marginLeft="12dp"/>
     <TextView
-        android:id="@+id/tv_calendarTodoList"
+        android:id="@+id/tv_calendarTodoListFinish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"

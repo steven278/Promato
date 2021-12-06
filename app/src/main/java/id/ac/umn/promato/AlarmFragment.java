@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
@@ -109,6 +110,7 @@ public class AlarmFragment extends Fragment implements View.OnClickListener, Dia
         paused = true;
     }
 
+    private ImageButton btnSetting;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -123,6 +125,16 @@ public class AlarmFragment extends Fragment implements View.OnClickListener, Dia
 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_alarm, container, false);
+
+//        btnSetting = v.findViewById(R.id.setting_btn_);
+//        btnSetting.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), SettingsActivity.class);
+////                getActivity().finish();
+//                startActivity(intent);
+//            }
+//        });
 
         podomoroTime = v.findViewById(R.id.podTime);
         startPause = v.findViewById(R.id.startPause);
