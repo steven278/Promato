@@ -41,7 +41,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="70dp"
                 tools:src="@tools:sample/avatars"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,12 +52,13 @@
 
                 <Button
                     android:id="@+id/btnCamera"
-                    android:layout_width="110dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="70dp"
                     android:backgroundTint="#FD643B"
                     android:paddingVertical="10dp"
+                    android:text="Camera"
                     android:textColor="@color/white"
                     app:icon="@drawable/ic_camera"
                     app:iconGravity="textStart"
@@ -66,10 +67,10 @@
 
                 <Button
                     android:id="@+id/btnGallery"
-                    android:layout_width="110dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="70dp"
                     android:backgroundTint="#FD643B"
                     android:paddingVertical="10dp"
                     android:text="Gallery"
@@ -77,19 +78,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <Button
-                android:id="@+id/btnSaveChanges"
-                android:layout_marginTop="60dp"
-                android:layout_marginHorizontal="30dp"
-                android:layout_gravity="right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
-                android:backgroundTint="#2970FF"
-                app:icon="@drawable/ic_save"
-                android:text=" Save Changes"
-                android:textColor="@color/white" />
 
         </LinearLayout>
 
