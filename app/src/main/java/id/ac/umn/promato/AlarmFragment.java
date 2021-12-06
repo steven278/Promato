@@ -1,12 +1,18 @@
 package id.ac.umn.promato;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.SystemClock;
-import android.util.Log;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +27,23 @@ import android.widget.TextView;
  * create an instance of this fragment.
  */
 public class AlarmFragment extends Fragment implements View.OnClickListener, DialogCycleFragment.OnInputCycleAdd {
+
+    public interface OnTime {
+        void GetPomNotification();
+    }
+
+    OnTime otNotif;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        try {
+            otNotif = (OnTime) context;
+        }catch (ClassCastException e){
+
+        }
+    }
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,11 +83,12 @@ public class AlarmFragment extends Fragment implements View.OnClickListener, Dia
     private Chronometer podomoroTime;
     private Button startPause, stopPodomoro;
 
-    private boolean isRunning, paused=true, working, resting, superRest;
+    private boolean isRunning, paused=true, working, resting, doneDialog;
     private  long currentTVal;
 
     private TextView status;
 
+    Context context;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,6 +114,8 @@ public class AlarmFragment extends Fragment implements View.OnClickListener, Dia
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        context = container.getContext();
 
         //-------Cycle Fragment Dialog--------
         DialogCycleFragment cycleDialog = new DialogCycleFragment();
@@ -139,7 +165,28 @@ public class AlarmFragment extends Fragment implements View.OnClickListener, Dia
                 }
                 if(cycleTemp == 0)
                 {
+                    if(doneDialog) return;
+
                     PausePodomoro();
+
+                    DialogCycleFragment cycleDialog = new DialogCycleFragment();
+                    cycleDialog.setTargetFragment(AlarmFragment.this, 1);
+                    cycleDialog.show(getFragmentManager(), "DialogCycleFragment");
+                    doneDialog = true;
+
+                    working=false;
+                    resting=false;
+                    status.setText("Status");
+                    podomoroTime.setBase(SystemClock.elapsedRealtime());
+                    currentTVal = 0;
+                    PausePodomoro();
+
+                    //----------------------- notif,vibrate,sound
+                    if(otNotif != null)
+                    {
+                        otNotif.GetPomNotification();
+                    }
+                    //-----------------------
                 }
 
                 int restTime = 300000;
@@ -189,6 +236,8 @@ public class AlarmFragment extends Fragment implements View.OnClickListener, Dia
                     working = true;
                     startPause.setText("Pause");
                     paused = false;
+
+                    doneDialog = false;
                 }
                 else  if(isRunning && paused)
                 {
@@ -217,8 +266,20 @@ public class AlarmFragment extends Fragment implements View.OnClickListener, Dia
                 podomoroTime.setBase(SystemClock.elapsedRealtime());
                 currentTVal = 0;
                 PausePodomoro();
+
+                //----------------------Notif
+                if(otNotif != null)
+                {
+                    otNotif.GetPomNotification();
+                }
+                //----------------------
                 break;
         }
+    }
+
+    private void GetNotification()
+    {
+
     }
 
     @Override
