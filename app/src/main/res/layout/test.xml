@@ -6,9 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:padding="16dp"
-    android:background="@color/biru_tomat"
-    tools:context=".AddNewTask">
+    android:padding="16dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -41,9 +39,6 @@
                         android:id="@+id/et_taskName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:textSize="20dp"
                         android:layout_marginTop="10dp"
                         android:hint="Task Name"
                         android:maxLines="1"
@@ -60,7 +55,7 @@
                     android:gravity="center"
                     android:text="Pick a Date"
                     android:textColor="@color/black"
-                    android:textSize="20dp"/>
+                    android:textSize="16sp"/>
 
                 <Button
                     android:id="@+id/btn_submitNewTask"
