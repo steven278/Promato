@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -69,15 +70,17 @@ public class AddNewTask extends AppCompatActivity {
                 String date = btn_date.getText().toString();
             //
 
-                int photo = 1;
-
             //
-                Todo todo = new Todo(task, date, taskID, R.drawable.mini_circle_blue);
-                //insert to database
-                reference.child("todo").child(userEmail).child(taskID).setValue(todo);
-                Intent intent = new Intent(AddNewTask.this, Pomodoro.class);
-                intent.putExtra("useremail", userEmail);
-                startActivity(intent);
+                if(!task.equals("") && !date.equals("Pick a Date")){
+                    Todo todo = new Todo(task, date, taskID, R.drawable.mini_circle_blue);
+                    //insert to database
+                    reference.child("todo").child(userEmail).child(taskID).setValue(todo);
+                    Intent intent = new Intent(AddNewTask.this, Pomodoro.class);
+                    intent.putExtra("useremail", userEmail);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(AddNewTask.this, "Salam dari binjai 👊🌴", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

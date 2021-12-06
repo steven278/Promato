@@ -222,8 +222,8 @@ public class AlarmFragment extends Fragment implements View.OnClickListener, Dia
     }
 
     @Override
-    public void SetCycle(String cycle) {
-        this.cycle = Integer.parseInt(cycle);
-        cycleTemp = Integer.parseInt(cycle);
+    public void SetCycle(int cycle) {
+        this.cycle = cycle;
+        cycleTemp = cycle;
     }
 }

@@ -18,7 +18,7 @@ public class DialogCycleFragment extends DialogFragment {
     private static final String TAG = "DialogCycleFragment";
 
     public interface OnInputCycleAdd {
-        void SetCycle(String cycle);
+        void SetCycle(int cycle);
     }
 
     private OnInputCycleAdd cycleInputCallback;
@@ -37,9 +37,9 @@ public class DialogCycleFragment extends DialogFragment {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String cycle = cycleInput.getText().toString();
+                int cycle = Integer.valueOf(cycleInput.getText().toString());
 
-                if(!cycle.equals(""))
+                if(cycle > 0)
                 {
                     cycleInputCallback.SetCycle(cycle);
                     getDialog().dismiss();
