@@ -37,7 +37,7 @@ Berikut adalah fitur-fitur yang terdapat dalam aplikasi Promato :
 <br> state Finished setelah pengguna menekan tombol finished di lokasi yang sama.
 <br> - 「Finished」, task yang  yang sudah ditekan tombol finished nya oleh pengguna,
 <br> dalam arti lain, telah selesai dikerjakan pengguna. Task dengan state Finished
-<br> akan dihapus dari daftar setelah pengguna menekan tomobol Remove.
+<br> akan dihapus dari daftar setelah pengguna menekan tombol Remove.
 
 - Calendar 
 <br> Fitur berupa halaman berisi kalender yang dimana pengguna dapat melihat daftar dari
