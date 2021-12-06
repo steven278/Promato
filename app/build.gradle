@@ -10,8 +10,8 @@ android {
         applicationId "id.ac.umn.promato"
         minSdk 25
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
