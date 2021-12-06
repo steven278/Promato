@@ -81,11 +81,24 @@
                     </LinearLayout>
                 </LinearLayout>
 
+                <Button
+                    android:id="@+id/btnChangeProfile"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp"
+                    android:backgroundTint="#53C9FF"
+                    app:icon="@drawable/ic_edit"
+                    android:text=" Change Profile Picture"
+                    android:textColor="@color/white" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:background="#DCDCDC"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="30dp"/>
 
                 <LinearLayout
@@ -182,7 +195,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="30dp"
                     android:text="v 1.0.0"
                     android:textSize="15dp"

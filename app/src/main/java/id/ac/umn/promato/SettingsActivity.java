@@ -22,7 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
     TextView tvUserName;
     TextView tvUserEmail;
     ImageView userImageView;
-    Button btnSignOut;
+    Button btnSignOut, btnChangeProfile;
     FirebaseAuth mAuth;
 
     @Override
@@ -33,6 +33,7 @@ public class SettingsActivity extends AppCompatActivity {
         tvUserName = findViewById(R.id.userName);
         tvUserEmail = findViewById(R.id.userEmail);
         userImageView = findViewById(R.id.userImageView);
+        btnChangeProfile = findViewById(R.id.btnChangeProfile);
         btnSignOut = findViewById(R.id.btnLogout);
 
         mAuth = FirebaseAuth.getInstance();
@@ -45,6 +46,7 @@ public class SettingsActivity extends AppCompatActivity {
         tvUserName.setText(userName);
         tvUserEmail.setText(userEmail);
         Glide.with(this).load(userPhotoUrl).into(userImageView);
+
         btnSignOut.setOnClickListener(view -> {
             mAuth.signOut();
 
@@ -58,6 +60,11 @@ public class SettingsActivity extends AppCompatActivity {
 
             startActivity(new Intent(SettingsActivity.this, LandingPageActivity.class));
             finishAffinity();
+        });
+
+        btnChangeProfile.setOnClickListener(view -> {
+            startActivity(new Intent(SettingsActivity.this, ChangeProfileActivity.class));
+            finish();
         });
     }
 }
