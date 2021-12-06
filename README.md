@@ -31,10 +31,10 @@ Berikut adalah fitur-fitur yang terdapat dalam aplikasi Promato :
 <br> statenya, dan terdapat 3 jenis state dari sebuah task, yaitu:
 <br> - 「To-Do」, task yang belum memasuki waktu mulainya. Task yang baru dibuat akan
 <br> memiliki state ini, dan akan memasuki state In-Progress setelah pengguna menekan
-<br> tombol start yang terdapat pada sebelah kanan waktu mulai task.
-<br> - 「In-Progress」, task yang sudah ditekan tombol start nya oleh pengguna, dalam
-<br> arti lain, sedang pengguna kerjakan. Task dengan state In-Progress akan masuk
-<br> ke state Finished setelah pengguna menekan tombol finished di lokasi yang sama.
+<br> tombol Progress yang terdapat pada sebelah kanan waktu mulai task.
+<br> - 「In-Progress」, task yang sudah ditekan tombol Progress nya oleh pengguna, dalam
+<br> arti lain, sedang pengguna kerjakan. Task dengan state In-Progress akan masuk ke
+<br> state Finished setelah pengguna menekan tombol finished di lokasi yang sama.
 <br> - 「Finished」, task yang  yang sudah ditekan tombol finished nya oleh pengguna,
 <br> dalam arti lain, telah selesai dikerjakan pengguna. Task dengan state Finished
 <br> akan dihapus dari daftar setelah pengguna menekan tomobol Remove.
