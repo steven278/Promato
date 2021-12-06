@@ -41,8 +41,14 @@ public class AlarmFragment extends Fragment implements View.OnClickListener, Dia
         try {
             otNotif = (OnTime) context;
         }catch (ClassCastException e){
-
+            throw new RuntimeException(context.toString());
         }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        otNotif = null;
     }
 
     // TODO: Rename parameter arguments, choose names that match
@@ -182,10 +188,7 @@ public class AlarmFragment extends Fragment implements View.OnClickListener, Dia
                     PausePodomoro();
 
                     //----------------------- notif,vibrate,sound
-                    if(otNotif != null)
-                    {
-                        otNotif.GetPomNotification();
-                    }
+                    otNotif.GetPomNotification();
                     //-----------------------
                 }
 
@@ -287,4 +290,23 @@ public class AlarmFragment extends Fragment implements View.OnClickListener, Dia
         this.cycle = cycle;
         cycleTemp = cycle;
     }
+
+    @Override
+    public void StartCycle() {
+        status.setText("Working");
+        if(resting)
+        {
+            status.setText("Rest");
+        }
+        podomoroTime.setBase(SystemClock.elapsedRealtime() - currentTVal);
+        podomoroTime.start();
+        isRunning = true;
+        working = true;
+        startPause.setText("Pause");
+        paused = false;
+
+        doneDialog = false;
+    }
+
+
 }

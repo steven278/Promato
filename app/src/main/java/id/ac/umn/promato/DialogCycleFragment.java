@@ -19,6 +19,7 @@ public class DialogCycleFragment extends DialogFragment {
 
     public interface OnInputCycleAdd {
         void SetCycle(int cycle);
+        void StartCycle();
     }
 
     private OnInputCycleAdd cycleInputCallback;
@@ -44,6 +45,8 @@ public class DialogCycleFragment extends DialogFragment {
                     cycleInputCallback.SetCycle(cycle);
                     getDialog().dismiss();
                 }
+
+                cycleInputCallback.StartCycle();
             }
         });
 
