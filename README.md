@@ -20,8 +20,8 @@ Berikut adalah fitur-fitur yang terdapat dalam aplikasi Promato :
 <br> pada Pomodoro Timer, yaitu Working - status dimana pengguna telah memulai timer
 <br> hingga sampai 25 menit dan per 25 menit setelah status Resting, dan status Resting
 <br>  - status selama 5 menit setiap pengguna melalui 25 status Working, waktu dimana
-<br> user beristirahat disela-sela setiap sesi bekerja / working. Jumlah banyak sesi 
-<br> working dan durasi istirahat ditentukan dengan jumlah cycle yang dimasukan pengguna.
+<br> user beristirahat disela-sela setiap sesi bekerja / working. Jumlah banyak sesi working
+<br> dan durasi istirahat ditentukan dengan jumlah cycle yang dimasukan pengguna.
 
 
 - To-Do List
