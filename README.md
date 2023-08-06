@@ -1,4 +1,7 @@
 # Promato
+
+URL Google Play Store : https://play.google.com/store/apps/details?id=id.ac.umn.promato
+
 #### Kelompok B | IF570-E
 ##### Anggota Kelompok:
 - ##### Michael Krisna Cahyadi      - 00000033738
